@@ -1,0 +1,1 @@
+# Calificaciones-X-Equivalencia
