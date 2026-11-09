@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0c1423" />
-  <meta name="description" content="Dashboard de calificación por equivalencia: noviembre 2026 a agosto 2027." />
+  <meta name="description" content="Dashboard de calificación por equivalencia: septiembre 2026 a agosto 2027." />
   <title>Calificación por Equivalencia | 2026–2027</title>
   <style>
     :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#eff5ff;background:#0a1120;--muted:#94a5bd;--edge:#26344a;--accent:#c6a66e;--blue:#71b8fa;--green:#57d3a0}
@@ -22,15 +22,15 @@
 </head>
 <body>
   <main class="wrap">
-    <header class="header"><div><div class="eyebrow">Panel de seguimiento · Año de calificación</div><h1>Calificación por <span class="gold">Equivalencia</span></h1><p>Una meta clara. Diez meses. Seguimiento de cada resultado.</p></div><div class="period">NOV 2026 — AGO 2027</div></header>
+    <header class="header"><div><div class="eyebrow">Panel de seguimiento · Año de calificación</div><h1>Calificación por <span class="gold">Equivalencia</span></h1><p>Una meta clara. Doce meses. Seguimiento de cada resultado.</p></div><div class="period">SEP 2026 — AGO 2027</div></header>
     <section class="cards" aria-label="Indicadores principales">
       <div class="card"><span>Meta total</span><strong id="totalGoal" class="gold">90,000</strong><small>Acumulado necesario</small></div>
-      <div class="card"><span>Meta mensual</span><strong>9,000</strong><small>Durante 10 meses</small></div>
-      <div class="card"><span>Acumulado registrado</span><strong id="actualTotal">0</strong><small id="filledMonths">0 de 10 meses registrados</small></div>
+      <div class="card"><span>Meta mensual</span><strong>7,500</strong><small>Durante 12 meses</small></div>
+      <div class="card"><span>Acumulado registrado</span><strong id="actualTotal">0</strong><small id="filledMonths">0 de 12 meses registrados</small></div>
       <div class="card"><span>Restante para la meta</span><strong id="remaining" class="green">90,000</strong><small id="completion">0 % completado</small></div>
     </section>
     <section class="grid">
-      <article class="panel"><div class="panel-head"><div><h2>Avance hacia los 90,000</h2><p class="sub">Actualiza el resultado real de cada mes en la tabla inferior.</p></div><strong id="progressPercent" class="gold">0 %</strong></div><div class="progress" role="progressbar" aria-label="Porcentaje de cumplimiento" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar"><div id="progressFill"></div></div><div class="progress-meta"><span id="progressActual">0 logrado</span><span>90,000 meta</span></div><div class="chart" id="chart" aria-label="Gráfico de logros mensuales"></div><div class="legend"><span><i class="swatch actual"></i>Resultado real</span><span><i class="swatch target"></i>Meta de 9,000</span></div></article>
+      <article class="panel"><div class="panel-head"><div><h2>Avance hacia los 90,000</h2><p class="sub">Actualiza el resultado real de cada mes en la tabla inferior.</p></div><strong id="progressPercent" class="gold">0 %</strong></div><div class="progress" role="progressbar" aria-label="Porcentaje de cumplimiento" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar"><div id="progressFill"></div></div><div class="progress-meta"><span id="progressActual">0 logrado</span><span>90,000 meta</span></div><div class="chart" id="chart" aria-label="Gráfico de logros mensuales"></div><div class="legend"><span><i class="swatch actual"></i>Resultado real</span><span><i class="swatch target"></i>Meta de 7,500</span></div></article>
       <aside class="panel"><h2>Resumen estratégico</h2><p class="sub">Indicadores calculados automáticamente.</p><div class="insights"><div class="insight"><span>Meta acumulada al mes seleccionado</span><strong id="targetToDate">—</strong><p id="targetToDateLabel">Selecciona un mes de corte.</p></div><div class="insight"><span>Diferencia contra la meta de corte</span><strong id="variance">—</strong><p>Positivo = por delante del plan.</p></div><div class="insight"><span>Promedio requerido por mes pendiente</span><strong id="requiredAvg">9,000</strong><p id="requiredAvgDesc">Basado en los meses posteriores al corte.</p></div></div><label class="sub" style="display:block;margin-top:18px" for="cutoff">Mes de corte para proyecciones</label><select id="cutoff" style="margin-top:7px;background:#0a1424;border:1px solid #3b4d66;color:white;border-radius:9px;padding:11px;width:100%"></select><p class="smallnote">El corte permite comparar la meta planificada y lo registrado hasta ese mes; los resultados futuros no se incluyen en esa comparación.</p></aside>
     </section>
     <section class="panel"><div class="panel-head"><div><h2>Control mensual de calificaciones</h2><p class="sub">Introduce tus resultados reales. Se guardan automáticamente en este navegador.</p></div></div><div class="table-scroll"><table class="table"><thead><tr><th>Mes</th><th>Meta</th><th>Meta acumulada</th><th>Real del mes</th><th>Real acumulado</th><th>Diferencia mensual</th><th>Estado</th></tr></thead><tbody id="tableBody"></tbody><tfoot><tr style="font-weight:800;background:#1a2a40"><td>TOTAL</td><td>90,000</td><td>90,000</td><td id="footerActual">0</td><td id="footerAccum">0</td><td id="footerVariance">−90,000</td><td id="footerStatus">—</td></tr></tfoot></table></div><p class="smallnote">«Sin registrar» es distinto de «0». Escribe 0 cuando el resultado del mes haya sido realmente cero. Los valores pueden contener decimales.</p></section>
@@ -39,12 +39,12 @@
   <script>
     (()=>{
       'use strict';
-      const months=['Noviembre 2026','Diciembre 2026','Enero 2027','Febrero 2027','Marzo 2027','Abril 2027','Mayo 2027','Junio 2027','Julio 2027','Agosto 2027'];
-      const short=['NOV','DIC','ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO'];
-      const target=9000,totalTarget=90000,key='equivalencia_2026_2027_v1';
+      const months=['Septiembre 2026','Octubre 2026','Noviembre 2026','Diciembre 2026','Enero 2027','Febrero 2027','Marzo 2027','Abril 2027','Mayo 2027','Junio 2027','Julio 2027','Agosto 2027'];
+      const short=['SEP','OCT','NOV','DIC','ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO'];
+      const target=7500,totalTarget=90000,key='equivalencia_2026_2027_v2',oldKey='equivalencia_2026_2027_v1';
       const num=n=>new Intl.NumberFormat('es-DO',{maximumFractionDigits:2}).format(n);
       const currencySigned=n=>(n>0?'+':n<0?'−':'')+num(Math.abs(n));
-      const load=()=>{try{const a=JSON.parse(localStorage.getItem(key));return Array.isArray(a)&&a.length===10?a.map(v=>v===null||v===''?null:Number.isFinite(Number(v))&&Number(v)>=0?Number(v):null):Array(10).fill(null)}catch{return Array(10).fill(null)}};
+      const load=()=>{const clean=a=>a.map(v=>v===null||v===''?null:Number.isFinite(Number(v))&&Number(v)>=0?Number(v):null);try{const a=JSON.parse(localStorage.getItem(key));if(Array.isArray(a)&&a.length===12)return clean(a);const previous=JSON.parse(localStorage.getItem(oldKey));if(Array.isArray(previous)&&previous.length===10){const migrated=[null,null,...clean(previous)];localStorage.setItem(key,JSON.stringify(migrated));return migrated}}catch{}return Array(12).fill(null)};
       let values=load();
       const el=id=>document.getElementById(id);
       const cutoffSelect=el('cutoff');months.forEach((m,i)=>{const o=document.createElement('option');o.value=i;o.textContent=m;cutoffSelect.appendChild(o)});
@@ -52,10 +52,10 @@
       const save=()=>{try{localStorage.setItem(key,JSON.stringify(values))}catch{}};
       function render(){
         const total=values.reduce((sum,v)=>sum+(v??0),0);const remaining=Math.max(0,totalTarget-total);const pct=total/totalTarget*100;
-        el('actualTotal').textContent=num(total);el('remaining').textContent=num(remaining);el('filledMonths').textContent=`${values.filter(v=>v!==null).length} de 10 meses registrados`;
+        el('actualTotal').textContent=num(total);el('remaining').textContent=num(remaining);el('filledMonths').textContent=`${values.filter(v=>v!==null).length} de 12 meses registrados`;
         el('completion').textContent=`${num(pct)} % completado`;el('progressPercent').textContent=`${num(pct)} %`;el('progressActual').textContent=`${num(total)} logrado`;
         el('progressFill').style.width=`${Math.min(100,pct)}%`;el('progressBar').setAttribute('aria-valuenow',String(Math.min(100,Math.round(pct))));
-        const cutoff=Number(cutoffSelect.value);const currentActual=values.slice(0,cutoff+1).reduce((s,v)=>s+(v??0),0);const currentTarget=(cutoff+1)*target;const difference=currentActual-currentTarget;const monthsLeft=9-cutoff;
+        const cutoff=Number(cutoffSelect.value);const currentActual=values.slice(0,cutoff+1).reduce((s,v)=>s+(v??0),0);const currentTarget=(cutoff+1)*target;const difference=currentActual-currentTarget;const monthsLeft=months.length-1-cutoff;
         el('targetToDate').textContent=num(currentTarget);el('targetToDateLabel').textContent=`Hasta ${months[cutoff]}`;el('variance').textContent=currencySigned(difference);el('variance').style.color=difference>=0?'var(--green)':'#f1ae9e';
         el('requiredAvg').textContent=monthsLeft?num(Math.max(0,totalTarget-currentActual)/monthsLeft):'—';el('requiredAvgDesc').textContent=monthsLeft?`Para completar la meta en los ${monthsLeft} meses siguientes.`:'No quedan meses después del corte.';
         el('tableBody').innerHTML='';let running=0;
@@ -70,9 +70,9 @@
       cutoffSelect.addEventListener('change',render);
       function download(name,contents,mime){const blob=new Blob([contents],{type:mime});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
       el('exportCsv').addEventListener('click',()=>{let accum=0;const rows=[['Mes','Meta mensual','Meta acumulada','Resultado real','Real acumulado','Diferencia mensual']];values.forEach((v,i)=>{accum+=v??0;rows.push([months[i],target,target*(i+1),v===null?'':v,accum,v===null?'':v-target])});download('equivalencia-2026-2027.csv','\ufeff'+rows.map(r=>r.join(';')).join('\r\n'),'text/csv;charset=utf-8')});
-      el('exportJson').addEventListener('click',()=>download('equivalencia-respaldo.json',JSON.stringify({version:1,period:'2026-11/2027-08',values},null,2),'application/json'));
-      el('importJson').addEventListener('click',()=>el('fileInput').click());el('fileInput').addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;try{const parsed=JSON.parse(await file.text());if(!Array.isArray(parsed.values)||parsed.values.length!==10||!parsed.values.every(x=>x===null||(typeof x==='number'&&Number.isFinite(x)&&x>=0)))throw Error('Formato no válido');if(confirm('¿Reemplazar los resultados actuales por los del respaldo?')){values=parsed.values;save();render()}}catch{alert('No se pudo importar. Elige un respaldo JSON válido de este dashboard.')}e.target.value=''});
-      el('reset').addEventListener('click',()=>{if(confirm('¿Borrar todos los resultados registrados? Esta acción no se puede deshacer.')){values=Array(10).fill(null);save();render()}});
+      el('exportJson').addEventListener('click',()=>download('equivalencia-respaldo.json',JSON.stringify({version:1,period:'2026-09/2027-08',values},null,2),'application/json'));
+      el('importJson').addEventListener('click',()=>el('fileInput').click());el('fileInput').addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;try{const parsed=JSON.parse(await file.text());if(!Array.isArray(parsed.values)||![10,12].includes(parsed.values.length)||!parsed.values.every(x=>x===null||(typeof x==='number'&&Number.isFinite(x)&&x>=0)))throw Error('Formato no válido');if(confirm('¿Reemplazar los resultados actuales por los del respaldo?')){values=parsed.values.length===10?[null,null,...parsed.values]:parsed.values;save();render()}}catch{alert('No se pudo importar. Elige un respaldo JSON válido de este dashboard.')}e.target.value=''});
+      el('reset').addEventListener('click',()=>{if(confirm('¿Borrar todos los resultados registrados? Esta acción no se puede deshacer.')){values=Array(12).fill(null);save();render()}});
       render();
     })();
   </script>

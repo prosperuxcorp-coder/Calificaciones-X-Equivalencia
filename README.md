@@ -1,8 +1,8 @@
 # Dashboard — Calificación por equivalencia 2026–2027
 
 ## Metas
-- **Período:** noviembre de 2026 a agosto de 2027 (10 meses).
-- **Meta mensual:** 9,000.
+- **Período:** septiembre de 2026 a agosto de 2027 (12 meses).
+- **Meta mensual:** 7,500.
 - **Meta total:** 90,000.
 
 ## Funciones
@@ -23,3 +23,5 @@
 **Importante:** Los registros se guardan en cada navegador/dispositivo mediante `localStorage`, no en GitHub. Para pasar información de un dispositivo a otro, descarga un respaldo JSON e impórtalo allí. No guardes datos privados en el código público del repositorio.
 
 **Nota:** Se usan unidades sin especificar (PV, puntos, etc.), ya que la meta fue indicada como 90,000 sin una unidad concreta.
+
+**Actualización:** El dashboard conserva automáticamente los resultados guardados de noviembre 2026 a agosto 2027 en el mismo navegador y deja septiembre y octubre vacíos. También admite respaldos antiguos de 10 meses.
